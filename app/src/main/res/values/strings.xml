@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Fibo</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!-- Drawer Header -->
+    <string name="navigation_drawer_title">@string/app_name</string>
+    <string name="navigation_drawer_description">Personal Finance Board</string>
+</resources>

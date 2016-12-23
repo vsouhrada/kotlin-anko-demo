@@ -10,6 +10,7 @@
     tools:showIn="@layout/app_bar_drawer">
 
     <TextView
+        android:id="@+id/contentText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!"

@@ -84,22 +84,12 @@ override fun onCreate(savedInstanceState: Bundle?) {
     }
 ```
 
-#### Dashboard View
+#### Show Username
+
+### Dashboard View
 Please keep in a mind that app is under development so do not expect some cool functionality yet.
 <p align="center">
   <img src="art/github/main.png" width="182" height="357"/>
-</p>
-
-Currently we have there only one functionality - if you click on FAB button -> then you DB Manager activity 
-starts.
-
-#### DB Manager View
-DB manager is there only to show that we have a data inside of sqlite database.
-Here you can see (select table User or Currency) that Requery framework is working.
-<p align="center">
-  <img src="art/github/db01.png" width="182" height="357"/>
-  <img src="art/github/db02.png" width="182" height="357"/>
-  <img src="art/github/db03.png" width="182" height="357"/>
 </p>
 
 #### Persistent Layer

@@ -12,4 +12,6 @@ interface IUserBL {
     fun existUser() : Boolean
 
     fun saveUser(userDO: UserDO)
+
+    fun getUser(): UserDO
 }

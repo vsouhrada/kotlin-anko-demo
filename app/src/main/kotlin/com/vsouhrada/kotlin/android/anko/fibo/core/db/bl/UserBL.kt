@@ -33,4 +33,14 @@ class UserBL @Inject constructor(val dataStore: KotlinEntityDataStore<Persistabl
             dataStore.insert(user)
         }
     }
+
+    override fun getUser(): UserDO {
+        val result = dataStore.select(UserEntity::class).get().first()
+
+        return concertToDO(result)
+    }
+
+    private fun concertToDO(entity: UserEntity): UserDO {
+        return UserDO(username = entity.userName, password = entity.password)
+    }
 }

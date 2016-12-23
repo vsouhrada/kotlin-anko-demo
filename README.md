@@ -36,7 +36,53 @@ So enter there username and password.
   <img src="art/github/login.png" width="182" height="357"/>
 </p>
 
-A whole view and activity in a code is written in Kotlin by using Anko
+A whole view and activity in a code is written in Kotlin by using Anko.
+
+As I said the login process is written in Kotlin and Anko is used to create UI not in XML but 
+directly in code by using Anko DSL features.
+
+So view you can find in class [CreateUserView](https://github.com/vsouhrada/kotlin-anko-demo/blob/master/app/src/main/kotlin/com/vsouhrada/kotlin/android/anko/fibo/function/user/CreateUserView.kt)
+
+What is interesting in this class - that UI is not created in XML but in code:
+```kotlin
+override fun createView(ui: AnkoContext<CreateUserActivity>) = with(ui) {
+        verticalLayout {
+            padding = dip(30)
+            val usernameEditText = editText {
+                id = R.id.userNameEditText
+                hintResource = R.string.create_user_hint_username
+                textSize = 24f
+            }
+
+            val passwordEditText = editText {
+                hintResource = R.string.create_user_hint_password
+                textSize = 24f
+            }
+
+            button {
+                textSize = 26f
+                textResource = R.string.create_user_create_button_text
+                onClick { view -> handleOnCreateAction(usernameEditText, passwordEditText) }
+            }
+        }
+    }
+```
+
+The connection between activity and View created in Anko is defined in `onCreate()` method in activity by calling:
+`CreateUserView(bus).setContentView(this)`
+(See CreateUserActivity)
+```kotlin
+override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // DI
+        activityComponent().inject(this)
+        // Create view
+        CreateUserView(bus).setContentView(this)
+
+        toast("Create a NEW User")
+
+    }
+```
 
 #### Dashboard View
 Please keep in a mind that app is under development so do not expect some cool functionality yet.

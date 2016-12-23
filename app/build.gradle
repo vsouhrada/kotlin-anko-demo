@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+//apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 24
@@ -24,6 +26,11 @@ android {
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
+
+    lintOptions {
+        //disable 'InvalidPackage'
+        warning 'InvalidPackage'
+    }
 }
 
 dependencies {
@@ -43,6 +50,24 @@ dependencies {
     compile "org.jetbrains.anko:anko-design:$anko_version"
     compile "org.jetbrains.anko:anko-recyclerview-v7:$anko_version"
 
+    // Reactive - Rx
+    compile 'io.reactivex:rxandroid:1.2.1'
+    compile 'io.reactivex:rxandroid:1.2.1'
+    compile 'io.reactivex:rxkotlin:0.60.0'
+
+    // Requery
+    compile "io.requery:requery:$requery_version"
+    compile "io.requery:requery-kotlin:$requery_version"
+    compile "io.requery:requery-android:$requery_version" // for android
+    kapt "io.requery:requery-processor:$requery_version"
+
+    // Dagger
+    compile "com.google.dagger:dagger:$dagger_version"
+    // APT dependencies
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+
+    provided 'org.glassfish:javax.annotation:10.0-b28' //Required by Dagger2
+
     /* Tests */
     testCompile 'junit:junit:4.12'
 
@@ -50,3 +75,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 }
+
+//kapt {
+//    generateStubs = true
+//}

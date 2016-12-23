@@ -9,4 +9,9 @@
     <!-- Drawer Header -->
     <string name="navigation_drawer_title">@string/app_name</string>
     <string name="navigation_drawer_description">Personal Finance Board</string>
+
+    <!-- Create User -->
+    <string name="create_user_hint_username">Username</string>
+    <string name="create_user_hint_password">Password</string>
+    <string name="create_user_create_button_text">Create</string>
 </resources>

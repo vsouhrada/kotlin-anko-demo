@@ -102,4 +102,59 @@ Here you can see (select table User or Currency) that Requery framework is worki
   <img src="art/github/db03.png" width="182" height="357"/>
 </p>
 
+#### Persistent Layer
+As I already mentioned I'm using the Requery library.
+
+##### Insert new user
+See UserBL.kt
+```kotlin
+class UserBL @Inject constructor(val dataStore: KotlinEntityDataStore<Persistable>) : IUserBL { 
+
+ override fun saveUser(userDO: UserDO) {
+   val user = UserEntity()
+   with(user) {
+     userName = userDO.username
+     password = userDO.password
+   }
+
+   dataStore.insert(user)
+ }
+}
+```
+
+How to check if user is in db?
+```kotlin
+override fun existUser() : Boolean{
+  return dataStore.count(User::class).get().value() > 0
+}
+```
+
+#### User db table
+```kotlin
+@Entity
+interface User : Persistable {
+
+    @get:Key
+    @get:Generated
+    var id: Int
+
+    @get:Column(length = 20, unique = true, nullable = false)
+    var userName: String
+
+    @get:Column(length = 20, nullable = false)
+    var password: String
+
+    @get:Column(length = 20)
+    var firstName: String
+
+    @get:Column(length = 20)
+    var lastName: String
+
+    @get:Column(length = 30)
+    var email: String
+
+    @get:OneToMany
+    val userAccounts: List<UserAccount>
+}
+```
 Next features will be added soon

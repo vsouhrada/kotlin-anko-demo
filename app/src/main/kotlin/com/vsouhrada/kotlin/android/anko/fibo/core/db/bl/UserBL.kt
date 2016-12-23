@@ -22,7 +22,6 @@ class UserBL @Inject constructor(val dataStore: KotlinEntityDataStore<Persistabl
     }
 
     override fun saveUser(userDO: UserDO) {
-
         val user = UserEntity()
         with(user) {
             userName = userDO.username

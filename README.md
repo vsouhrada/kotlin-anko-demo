@@ -84,13 +84,27 @@ override fun onCreate(savedInstanceState: Bundle?) {
     }
 ```
 
-#### Show Username
-
 ### Dashboard View
 Please keep in a mind that app is under development so do not expect some cool functionality yet.
 <p align="center">
   <img src="art/github/main.png" width="182" height="357"/>
 </p>
+
+#### Show Username
+See DrawerActivity
+```Kotlin
+private fun showUserInfo() {
+  val userNameView = find<TextView>(R.id.contentText)
+
+  doAsync {
+    val user = userBl.getUser()
+
+    uiThread {
+      userNameView.text = user.username
+    }
+  }
+}
+```
 
 #### Persistent Layer
 As I already mentioned I'm using the Requery library.
@@ -101,22 +115,37 @@ See UserBL.kt
 class UserBL @Inject constructor(val dataStore: KotlinEntityDataStore<Persistable>) : IUserBL { 
 
  override fun saveUser(userDO: UserDO) {
-   val user = UserEntity()
-   with(user) {
-     userName = userDO.username
-     password = userDO.password
-   }
-
-   dataStore.insert(user)
- }
+         val user = UserEntity()
+         with(user) {
+             userName = userDO.username
+             password = userDO.password
+         }
+ 
+         doAsync {
+             dataStore.insert(user)
+         }
+     }
 }
 ```
 
-How to check if user is in db?
+**How to check if user is in db?**
 ```kotlin
 override fun existUser() : Boolean{
   return dataStore.count(User::class).get().value() > 0
 }
+```
+
+##### Load User from DB
+```kotlin
+    override fun getUser(): UserDO {
+        val result = dataStore.select(UserEntity::class).get().first()
+
+        return concertToDO(result)
+    }
+
+    private fun concertToDO(entity: UserEntity): UserDO {
+        return UserDO(username = entity.userName, password = entity.password)
+    }
 ```
 
 #### User db table

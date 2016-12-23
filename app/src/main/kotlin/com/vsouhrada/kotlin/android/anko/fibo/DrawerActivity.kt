@@ -78,7 +78,6 @@ class DrawerActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedLi
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
-        val id = item.itemId
         when (item.itemId) {
             R.id.nav_camera -> toast("Click Camera")
             R.id.nav_gallery -> toast("Click Gallery")

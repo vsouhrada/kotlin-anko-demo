@@ -22,7 +22,6 @@
 
         <activity android:name=".function.user.CreateUserActivity" />
         <activity android:name=".DrawerActivity" android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".core.admin.db.AndroidDatabaseManager" />
     </application>
 
 </manifest>

@@ -7,3 +7,7 @@ Used libraries/frameworks
 * Dagger 2.2
 * RxAndroid 1.2.1
 * RxKotlin 0.60.0
+
+* Note - DrawerActivity is not written in Kotlin yet
+
+![alt tag](https://github.com/vsouhrada/kotlin-anko-demo/blob/master/art/github/db01.png)

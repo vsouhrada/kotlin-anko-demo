@@ -10,4 +10,6 @@ Used libraries/frameworks
 
 * Note - DrawerActivity is not written in Kotlin yet
 
-![alt tag](https://github.com/vsouhrada/kotlin-anko-demo/blob/master/art/github/db01.png)
+<p align="center">
+  <img src="art/github/db01.png" width="182" height="357"/>
+</p>

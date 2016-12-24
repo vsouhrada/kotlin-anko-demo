@@ -1,6 +1,6 @@
 package com.vsouhrada.apps.fibo.core.db.bl
 
-import com.vsouhrada.kotlin.android.anko.fibo.core.model.UserDO
+import com.vsouhrada.kotlin.android.anko.fibo.domain.model.UserDO
 
 /**
  * @author vsouhrada

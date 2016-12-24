@@ -6,17 +6,16 @@ import com.vsouhrada.apps.fibo.core.db.bl.IUserBL
 import com.vsouhrada.apps.fibo.function.user.CreateUserEvent
 import com.vsouhrada.kotlin.android.anko.fibo.DrawerActivity
 import com.vsouhrada.kotlin.android.anko.fibo.core.rx.RxBus
+import com.vsouhrada.kotlin.android.anko.fibo.function.user.view.CreateUserView
 import org.jetbrains.anko.setContentView
 import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.toast
 import rx.Subscription
 import javax.inject.Inject
 
 /**
  * @author vsouhrada
  * @see[BaseActivity]
- * @version 0.1
- * @since 0.1
+ * @since 0.1.0
  */
 class CreateUserActivity : BaseActivity() {
 
@@ -46,10 +45,6 @@ class CreateUserActivity : BaseActivity() {
         activityComponent().inject(this)
         // Create view
         CreateUserView(bus).setContentView(this)
-
-        toast("Create a NEW User")
-
     }
-
 
 }

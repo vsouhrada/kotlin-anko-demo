@@ -78,12 +78,16 @@ override fun onCreate(savedInstanceState: Bundle?) {
         activityComponent().inject(this)
         // Create view
         CreateUserView(bus).setContentView(this)
-
-        toast("Create a NEW User")
-
     }
 ```
 
+In case of empty username or password -> application must show an alert dialog. By using Anko implementation of dialog is very simple
+```kotlin
+alert(title = resources.getString(R.string.create_user_alert_failed_title),
+      message = resources.getString(R.string.create_user_alert_failed_message)) {
+         positiveButton("Close") { this@alert.dismiss() }
+}.show()
+```
 ### Dashboard View
 Please keep in a mind that app is under development so do not expect some cool functionality yet.
 <p align="center">

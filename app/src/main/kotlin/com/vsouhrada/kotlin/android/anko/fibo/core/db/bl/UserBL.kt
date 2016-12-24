@@ -3,7 +3,7 @@ package com.vsouhrada.kotlin.android.anko.fibo.core.db.bl
 import com.vsouhrada.apps.fibo.core.db.bl.IUserBL
 import com.vsouhrada.kotlin.android.anko.fibo.core.db.entity.User
 import com.vsouhrada.kotlin.android.anko.fibo.core.db.entity.UserEntity
-import com.vsouhrada.kotlin.android.anko.fibo.core.model.UserDO
+import com.vsouhrada.kotlin.android.anko.fibo.domain.model.UserDO
 import io.requery.Persistable
 import io.requery.sql.KotlinEntityDataStore
 import org.jetbrains.anko.doAsync

@@ -1,10 +1,11 @@
-package com.vsouhrada.kotlin.android.anko.fibo.function.user
+package com.vsouhrada.kotlin.android.anko.fibo.function.user.view
 
 import android.widget.EditText
 import com.vsouhrada.apps.fibo.function.user.CreateUserEvent
 import com.vsouhrada.kotlin.android.anko.fibo.R
-import com.vsouhrada.kotlin.android.anko.fibo.core.model.UserDO
 import com.vsouhrada.kotlin.android.anko.fibo.core.rx.RxBus
+import com.vsouhrada.kotlin.android.anko.fibo.domain.model.UserDO
+import com.vsouhrada.kotlin.android.anko.fibo.function.user.CreateUserActivity
 import org.jetbrains.anko.*
 
 /**
@@ -31,24 +32,31 @@ class CreateUserView(val bus: RxBus) : AnkoComponent<CreateUserActivity> {
             }
 
             button {
-                textSize = 26f
+                textSize = 25f
                 textResource = R.string.create_user_create_button_text
-                onClick { view -> handleOnCreateAction(usernameEditText, passwordEditText) }
+                onClick { view -> handleOnCreateAction(ui, usernameEditText, passwordEditText) }
             }
         }
     }
 
-    private fun handleOnCreateAction(usernameEditText: EditText, passwordEditText: EditText) {
+    private fun handleOnCreateAction(ui: AnkoContext<CreateUserActivity>, usernameEditText: EditText, passwordEditText: EditText) {
         val username = usernameEditText.text.toString()
         val password = passwordEditText.text.toString()
 
         if (validateCredentials(username, password)) {
             bus.send(CreateUserEvent(UserDO(username = username, password = password)))
+        } else {
+            with(ui) {
+                alert(title = resources.getString(R.string.create_user_alert_failed_title),
+                        message = resources.getString(R.string.create_user_alert_failed_message)) {
+                    positiveButton("Close") { this@alert.dismiss() }
+                }.show()
+            }
         }
     }
 
     private fun validateCredentials(username: String, password: String): Boolean {
-        return true
+        return !username.isNullOrEmpty() && !password.isNullOrEmpty()
     }
 
 

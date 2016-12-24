@@ -1,4 +1,4 @@
-package com.vsouhrada.kotlin.android.anko.fibo.core.model
+package com.vsouhrada.kotlin.android.anko.fibo.domain.model
 
 /**
  * @author vsouhrada

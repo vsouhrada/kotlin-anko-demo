@@ -88,6 +88,10 @@ alert(title = resources.getString(R.string.create_user_alert_failed_title),
          positiveButton("Close") { this@alert.dismiss() }
 }.show()
 ```
+<p align="center">
+  <img src="art/github/create_user_alert.png" width="182" height="357"/>
+</p>
+
 ### Dashboard View
 Please keep in a mind that app is under development so do not expect some cool functionality yet.
 <p align="center">

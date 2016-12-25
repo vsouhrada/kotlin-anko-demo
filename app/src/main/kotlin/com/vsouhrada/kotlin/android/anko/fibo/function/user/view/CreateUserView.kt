@@ -3,6 +3,7 @@ package com.vsouhrada.kotlin.android.anko.fibo.function.user.view
 import android.widget.EditText
 import com.vsouhrada.apps.fibo.function.user.CreateUserEvent
 import com.vsouhrada.kotlin.android.anko.fibo.R
+import com.vsouhrada.kotlin.android.anko.fibo.core.anko.string
 import com.vsouhrada.kotlin.android.anko.fibo.core.rx.RxBus
 import com.vsouhrada.kotlin.android.anko.fibo.domain.model.UserDO
 import com.vsouhrada.kotlin.android.anko.fibo.function.user.CreateUserActivity
@@ -12,8 +13,7 @@ import org.jetbrains.anko.*
  * @author vsouhrada
  * @see[AnkoComponent]
  * @see[CreateUserActivity]
- * @version 0.1
- * @since 0.1
+ * @since 0.1.0
  */
 class CreateUserView(val bus: RxBus) : AnkoComponent<CreateUserActivity> {
 
@@ -47,9 +47,9 @@ class CreateUserView(val bus: RxBus) : AnkoComponent<CreateUserActivity> {
             bus.send(CreateUserEvent(UserDO(username = username, password = password)))
         } else {
             with(ui) {
-                alert(title = resources.getString(R.string.create_user_alert_failed_title),
-                        message = resources.getString(R.string.create_user_alert_failed_message)) {
-                    positiveButton("Close") { this@alert.dismiss() }
+                alert(title = string(R.string.create_user_alert_failed_title),
+                        message = string(R.string.create_user_alert_failed_message)) {
+                    positiveButton(string(R.string.dialog_button_close)) { this@alert.dismiss() }
                 }.show()
             }
         }
@@ -58,6 +58,5 @@ class CreateUserView(val bus: RxBus) : AnkoComponent<CreateUserActivity> {
     private fun validateCredentials(username: String, password: String): Boolean {
         return !username.isNullOrEmpty() && !password.isNullOrEmpty()
     }
-
 
 }

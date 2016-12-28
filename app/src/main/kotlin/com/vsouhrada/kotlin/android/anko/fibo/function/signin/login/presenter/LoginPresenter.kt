@@ -28,11 +28,6 @@ class LoginPresenter @Inject constructor(val userBL: IUserBL) : MvpBasePresenter
 
     //cancelSubscription()
 
-//    if (credentials.userName.equals("frosty") && credentials.password.equals("snow")) {
-//      view?.loginSuccessful()
-//    } else {
-//      view?.showError()
-//    }
     doAsync {
       val user = userBL.getUser(credentials)
       uiThread {

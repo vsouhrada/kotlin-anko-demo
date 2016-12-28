@@ -7,7 +7,9 @@ import android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD
 import android.view.Gravity
 import android.view.View
 import android.view.animation.AnimationUtils
+import android.widget.EditText
 import android.widget.LinearLayout
+import android.widget.TextView
 import com.hkm.ui.processbutton.iml.ActionProcessButton
 import com.rengwuxian.materialedittext.MaterialEditText
 import com.rengwuxian.materialedittext.MaterialEditText.FLOATING_LABEL_NORMAL
@@ -33,13 +35,25 @@ class LoginView : AnkoComponent<FragmentActivity>, ILoginView {
 
   lateinit var ankoView: AnkoContext<FragmentActivity>
 
+  var isRestoringViewState = false
+
   override fun createView(ui: AnkoContext<FragmentActivity>) = with(ui) {
     ankoView = ui
     linearLayout {
       this.gravity = Gravity.CENTER
       lparams(width = matchParent, height = matchParent) {
         orientation = LinearLayout.VERTICAL
+        this.gravity = Gravity.CENTER
       }
+
+      scrollView {
+        lparams(width = matchParent, height = wrapContent)
+
+        linearLayout {
+          this.gravity = Gravity.CENTER
+          lparams(width = matchParent, height = matchParent) {
+            orientation = LinearLayout.VERTICAL
+          }
 
 //      relativeLayout {
 //        lparams(width = matchParent, height = wrapContent, weight = 0.5f) {
@@ -56,46 +70,46 @@ class LoginView : AnkoComponent<FragmentActivity>, ILoginView {
 //        }
 //      }
 
-      linearLayout {
-        id = R.id.loginForm
-        lparams(width = dip(300), height = wrapContent) {
-          background = ContextCompat.getDrawable(ctx, R.color.white)
-          orientation = LinearLayout.VERTICAL
-          this.gravity = Gravity.CENTER
-          padding = dip(16)
-          clipToPadding = false
-          bottomMargin = dip(16)
-        }
-
-        textInputLayout {
-          materialEditText {
-            id = R.id.userNameEditText
-            lparams(width = matchParent, height = wrapContent) {
-              this.topMargin = dip(12)
+          linearLayout {
+            id = R.id.loginForm
+            lparams(width = dip(300), height = wrapContent) {
+              background = ContextCompat.getDrawable(ctx, R.color.white)
+              orientation = LinearLayout.VERTICAL
+              this.gravity = Gravity.CENTER
+              padding = dip(16)
+              clipToPadding = false
+              bottomMargin = dip(16)
             }
-            hintResource = R.string.create_user_hint_username
-            textSize = 24f
-            setIconLeft(ContextCompat.getDrawable(ctx, R.mipmap.ic_username))
-            setFloatingLabel(FLOATING_LABEL_NORMAL)
-            setPrimaryColor(R.color.colorAccent)
-          }
-        }
 
-        textInputLayout {
-          materialEditText {
-            id = R.id.passwordEditText
-            lparams(width = matchParent, height = wrapContent)
-            inputType = TYPE_CLASS_TEXT or TYPE_TEXT_VARIATION_PASSWORD
-            hintResource = R.string.create_user_hint_password
-            textSize = 24f
-            setIconLeft(ContextCompat.getDrawable(ctx, R.mipmap.ic_password))
-          }
-        }
+            textInputLayout {
+              materialEditText {
+                id = R.id.userNameEditText
+                lparams(width = matchParent, height = wrapContent) {
+                  this.topMargin = dip(12)
+                }
+                hintResource = R.string.create_user_hint_username
+                textSize = 24f
+                setIconLeft(ContextCompat.getDrawable(ctx, R.mipmap.ic_username))
+                setFloatingLabel(FLOATING_LABEL_NORMAL)
+                setPrimaryColor(R.color.colorAccent)
+              }
+            }
 
-        // https://github.com/Kotlin/anko/issues/16
-        include<ActionProcessButton>(R.layout.process_button_login) {
-          onClick { handleOnLoginAction(ui) }
-        }
+            textInputLayout {
+              materialEditText {
+                id = R.id.passwordEditText
+                lparams(width = matchParent, height = wrapContent)
+                inputType = TYPE_CLASS_TEXT or TYPE_TEXT_VARIATION_PASSWORD
+                hintResource = R.string.create_user_hint_password
+                textSize = 24f
+                setIconLeft(ContextCompat.getDrawable(ctx, R.mipmap.ic_password))
+              }
+            }
+
+            // https://github.com/Kotlin/anko/issues/16
+            include<ActionProcessButton>(R.layout.process_button_login) {
+              onClick { handleOnLoginAction(ui) }
+            }
 
 //        actionProcessButton(theme = R.style.ActionProcessButton) {
 //          id = R.id.loginButton
@@ -112,32 +126,33 @@ class LoginView : AnkoComponent<FragmentActivity>, ILoginView {
 //          onClick { toast("aaaaa") }
 //        }
 
-        textView {
-          id = R.id.errorView
-          lparams {
-            gravity = Gravity.CENTER
-            topMargin = dip(8)
-            bottomMargin = dip(16)
-          }
-          textColor = ContextCompat.getColor(ctx, R.color.red_error)
-          text = string(R.string.error_view_login_text)
-          textSize = 14f
-          visibility = View.GONE
-        }
+            textView {
+              id = R.id.errorView
+              lparams {
+                gravity = Gravity.CENTER
+                topMargin = dip(8)
+                bottomMargin = dip(16)
+              }
+              textColor = ContextCompat.getColor(ctx, R.color.red_error)
+              text = string(R.string.error_view_login_text)
+              textSize = 14f
+              visibility = View.GONE
+            }
 
-        textView {
-          lparams(width = matchParent, height = wrapContent) {
-            gravity = Gravity.CENTER
-            leftMargin = dip(16)
-            rightMargin = dip(16)
+            textView {
+              lparams(width = matchParent, height = wrapContent) {
+                gravity = Gravity.CENTER
+                leftMargin = dip(16)
+                rightMargin = dip(16)
+              }
+              textColor = ContextCompat.getColor(ctx, R.color.secondary_text)
+              text = "Hint:\nusername = frosty   password = snow"
+              textSize = 10f
+            }
           }
-          textColor = ContextCompat.getColor(ctx, R.color.secondary_text)
-          text = "Hint:\nusername = frosty   password = snow"
-          textSize = 10f
         }
       }
     }
-
   }
 
   private fun handleOnLoginAction(ui: AnkoContext<FragmentActivity>) {
@@ -180,18 +195,56 @@ class LoginView : AnkoComponent<FragmentActivity>, ILoginView {
   }
 
   override fun showLoginForm() {
-    //viewState.setShowLoginForm()
+    viewState.setShowLoginForm()
+    with(ankoView.view) {
+      find<TextView>(R.id.errorView).visibility = View.GONE
+      setFormEnabled(enabled = true)
+      find<ActionProcessButton>(R.id.loginButton).progress = 0
+    }
   }
 
   override fun showError() {
-    ankoView.toast("error")
+    viewState.setShowError()
+    setFormEnabled(true)
+    with(ankoView.owner) {
+      find<ActionProcessButton>(R.id.loginButton).progress = 0
+      if (!isRestoringViewState) {
+        // Enable animations only if not restoring view state
+        with(find<LinearLayout>(R.id.loginForm)) {
+          clearAnimation()
+          startAnimation(AnimationUtils.loadAnimation(ctx, R.anim.shake))
+        }
+      }
+      find<TextView>(R.id.errorView).visibility = View.VISIBLE
+    }
   }
 
 
   override fun showLoading() {
+    viewState.setShowLoading()
+    with(ankoView.view) {
+      find<TextView>(R.id.errorView).visibility = View.GONE
+      setFormEnabled(enabled = true)
+      find<ActionProcessButton>(R.id.loginButton).progress = 30
+    }
+
   }
 
   override fun loginSuccessful() {
-    ankoView.toast("JUPII")
+    with(ankoView.view) {
+      find<ActionProcessButton>(R.id.loginButton).progress = 100 // done
+      // TODO
+//      ankoView.owner.finish()
+//      ankoView.owner.overridePendingTransition(0, R.anim.zoom_out)
+    }
+    ankoView.toast("Login OK")
+  }
+
+  private fun setFormEnabled(enabled: Boolean) {
+    with(ankoView.view) {
+      find<EditText>(R.id.userNameEditText).enabled = enabled
+      find<EditText>(R.id.passwordEditText).enabled = enabled
+      find<ActionProcessButton>(R.id.loginButton).enabled = enabled
+    }
   }
 }

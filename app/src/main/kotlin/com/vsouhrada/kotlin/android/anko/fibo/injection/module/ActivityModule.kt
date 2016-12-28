@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.support.v4.app.FragmentActivity
 import android.support.v4.app.FragmentManager
+import android.support.v7.app.AppCompatActivity
 import com.vsouhrada.apps.fibo.injection.qualifier.ForActivity
 import dagger.Module
 import dagger.Provides
@@ -13,7 +14,7 @@ import dagger.Provides
  * @since 0.1.0
  */
 @Module
-class ActivityModule(private val activity: Activity) {
+class ActivityModule(private val activity: AppCompatActivity) {
 
   @Provides fun provideActivity(): Activity {
     return activity
@@ -28,8 +29,8 @@ class ActivityModule(private val activity: Activity) {
     return (activity as FragmentActivity).getSupportFragmentManager()
   }
 
-//  @Provides @Singleton fun provideLoginPresenter(userBL: UserBL): LoginPresenter {
-//    return LoginPresenter(userBL = userBL)
+//  @Provides @Singleton fun provideLoginPresenter(/*userBL: UserBL*/): LoginPresenter {
+//    return LoginPresenter(/*userBL = userBL*/)
 //  }
 
 }

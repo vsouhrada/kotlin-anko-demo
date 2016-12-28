@@ -1,15 +1,19 @@
 package com.vsouhrada.kotlin.android.anko.fibo.function.signin.login.presenter
 
 import com.hannesdorfmann.mosby.mvp.MvpBasePresenter
+import com.vsouhrada.apps.fibo.core.db.bl.IUserBL
 import com.vsouhrada.kotlin.android.anko.fibo.function.signin.login.model.AuthCredentials
 import com.vsouhrada.kotlin.android.anko.fibo.function.signin.login.view.ILoginViewPresenter
 import com.vsouhrada.kotlin.android.anko.fibo.function.signin.login.view.LoginView
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.uiThread
+import javax.inject.Inject
 
 /**
  * @author vsouhrada
  * @since 0.1.0
  */
-class LoginPresenter(/*@Inject val userBL: IUserBL*/) : MvpBasePresenter<LoginView>(), ILoginViewPresenter {
+class LoginPresenter @Inject constructor(val userBL: IUserBL) : MvpBasePresenter<LoginView>(), ILoginViewPresenter {
 
   //private var subscriber: Subscriber<UserDO>? = null
 
@@ -24,23 +28,23 @@ class LoginPresenter(/*@Inject val userBL: IUserBL*/) : MvpBasePresenter<LoginVi
 
     //cancelSubscription()
 
-    if (credentials.userName.equals("frosty") && credentials.password.equals("snow")) {
-      view?.loginSuccessful()
-    } else {
-      view?.showError()
-    }
-//    doAsync {
-//      val user = userBL.getUser(credentials)
-//      uiThread {
-//        if (isViewAttached) {
-//          if (user != null) {
-//            view?.loginSuccessful()
-//          } else {
-//            view?.showError()
-//          }
-//        }
-//      }
+//    if (credentials.userName.equals("frosty") && credentials.password.equals("snow")) {
+//      view?.loginSuccessful()
+//    } else {
+//      view?.showError()
 //    }
+    doAsync {
+      val user = userBL.getUser(credentials)
+      uiThread {
+        if (isViewAttached) {
+          if (user != null) {
+            view?.loginSuccessful()
+          } else {
+            view?.showError()
+          }
+        }
+      }
+    }
   }
 
 //  /**

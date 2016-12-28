@@ -2,6 +2,7 @@ package com.vsouhrada.kotlin.android.anko.fibo.function.signin.login.view
 
 import android.os.Bundle
 import android.view.View
+import com.vsouhrada.kotlin.android.anko.fibo.app.FiboApp
 import com.vsouhrada.kotlin.android.anko.fibo.core.mvp.BaseViewStateFragment
 import com.vsouhrada.kotlin.android.anko.fibo.function.signin.login.presenter.LoginPresenter
 import org.jetbrains.anko.AnkoContext
@@ -29,7 +30,7 @@ class LoginFragment : BaseViewStateFragment<LoginView, LoginPresenter>() {
   }
 
   override fun createPresenter(): LoginPresenter {
-    val presenter = LoginPresenter()
+    val presenter = FiboApp.applicationComponent.loginPres()
     view.presenter = presenter
 
     return presenter

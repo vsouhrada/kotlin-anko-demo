@@ -5,7 +5,6 @@ import com.vsouhrada.apps.fibo.injection.qualifier.PerActivity
 import com.vsouhrada.kotlin.android.anko.fibo.DrawerActivity
 import com.vsouhrada.kotlin.android.anko.fibo.function.MainActivity
 import com.vsouhrada.kotlin.android.anko.fibo.function.signin.SignInActivity
-import com.vsouhrada.kotlin.android.anko.fibo.function.signin.login.view.LoginFragment
 import dagger.Component
 
 /**
@@ -16,16 +15,12 @@ import dagger.Component
  */
 @PerActivity
 @Component(dependencies = arrayOf(ApplicationComponent::class), modules = arrayOf(ActivityModule::class) )
-interface ActivityComponent : LoginFragment.Injector {
+interface ActivityComponent /*: LoginFragment.Injector*/ {
 
   fun inject(drawerActivity: DrawerActivity)
 
   fun inject(mainActivity: MainActivity)
 
   fun inject(signInActivity: SignInActivity)
-
-  /* === LOGIN process === */
-  //fun loginPresenter(): LoginPresenter
-
 
 }

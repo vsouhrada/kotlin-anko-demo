@@ -8,6 +8,7 @@ import com.vsouhrada.apps.fibo.injection.qualifier.ForApplication
 import com.vsouhrada.kotlin.android.anko.fibo.app.FiboApp
 import com.vsouhrada.kotlin.android.anko.fibo.core.db.FiboDatabaseSource
 import com.vsouhrada.kotlin.android.anko.fibo.core.rx.RxBus
+import com.vsouhrada.kotlin.android.anko.fibo.function.signin.login.presenter.LoginPresenter
 import dagger.Component
 import io.requery.Persistable
 import io.requery.sql.KotlinEntityDataStore
@@ -21,17 +22,19 @@ import javax.inject.Singleton
 @Component(modules = arrayOf(ApplicationModule::class))
 interface ApplicationComponent {
 
-    @ForApplication fun appContext(): Context
+  @ForApplication fun appContext(): Context
 
-    fun application(): Application
+  fun application(): Application
 
-    fun eventBus(): RxBus
+  fun eventBus(): RxBus
 
-    fun databaseSource(): FiboDatabaseSource
+  fun databaseSource(): FiboDatabaseSource
 
-    fun dataStore(): KotlinEntityDataStore<Persistable>
+  fun dataStore(): KotlinEntityDataStore<Persistable>
 
-    fun userBusinessLogic(): IUserBL
+  fun userBusinessLogic(): IUserBL
 
-    fun inject(application: FiboApp)
+  @Singleton fun loginPres(): LoginPresenter
+
+  fun inject(application: FiboApp)
 }

@@ -30,43 +30,48 @@ In this application I would like to use and show libraries which I think are ver
 useful for Android development.
 
 #### Login View
-In case of that you are running app for first time - then you need to create an account.
-So enter there username and password.
+First screen of application is the Login view. There you must enter username and password.
 
 <p align="center">
   <img src="art/github/login.png" width="182" height="357"/>
 </p>
 
-A whole view and activity in a code is written in Kotlin by using Anko.
+A default demo user is already created so you can use this user where:
+* username = frosty
+* password = snow
 
-As I said the login process is written in Kotlin and Anko is used to create UI not in XML but 
+You can find these default values below Sign In button as a hint.
+
+The Login process is written in Kotlin and Anko is used to create UI not in XML but 
 directly in code by using Anko DSL features.
 
-So view you can find in class [CreateUserView](https://github.com/vsouhrada/kotlin-anko-demo/blob/master/app/src/main/kotlin/com/vsouhrada/kotlin/android/anko/fibo/function/user/CreateUserView.kt)
+See [LoginView](https://github.com/vsouhrada/kotlin-anko-demo/blob/master/app/src/main/kotlin/com/vsouhrada/kotlin/android/anko/fibo/function/signin/login/view/LoginView.kt)
 
 What is interesting in this class - that UI is not created in XML but in code:
 ```kotlin
-override fun createView(ui: AnkoContext<CreateUserActivity>) = with(ui) {
-        verticalLayout {
-            padding = dip(30)
-            val usernameEditText = editText {
-                id = R.id.userNameEditText
-                hintResource = R.string.create_user_hint_username
-                textSize = 24f
-            }
-
-            val passwordEditText = editText {
-                hintResource = R.string.create_user_hint_password
-                textSize = 24f
-            }
-
-            button {
-                textSize = 26f
-                textResource = R.string.create_user_create_button_text
-                onClick { view -> handleOnCreateAction(usernameEditText, passwordEditText) }
-            }
-        }
-    }
+textView {
+  id = R.id.errorView
+  lparams {
+    gravity = Gravity.CENTER
+    topMargin = dip(8)
+    bottomMargin = dip(16)
+  }
+  textColor = ContextCompat.getColor(ctx, R.color.red_error)
+  text = string(R.string.error_view_login_text)
+  textSize = 14f
+  visibility = View.GONE
+}
+        
+textView {
+  lparams(width = matchParent, height = wrapContent) {
+    gravity = Gravity.CENTER
+    leftMargin = dip(16)
+    rightMargin = dip(16)
+  }
+  textColor = ContextCompat.getColor(ctx, R.color.secondary_text)
+  text = "Hint:\nusername = frosty   password = snow"
+  textSize = 10f
+}   
 ```
 
 The connection between activity and View created in Anko is defined in `onCreate()` method in activity by calling:

@@ -1,7 +1,10 @@
 package com.vsouhrada.kotlin.android.anko.fibo.core.db.entity
 
 import android.os.Parcelable
-import io.requery.*
+import io.requery.ForeignKey
+import io.requery.Key
+import io.requery.ManyToOne
+import io.requery.Persistable
 
 /**
  * @author vsouhrada
@@ -9,7 +12,7 @@ import io.requery.*
  * @version 0.1
  * @since 0.1
  */
-@Entity
+//@Entity
 interface UserAccount : Parcelable, Persistable {
 
     @get:Key

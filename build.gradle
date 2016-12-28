@@ -1,11 +1,13 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext.support_version = '24.2.1'
-    ext.kotlin_version = '1.1-M04'
-    ext.anko_version = '0.9'
-    ext.dagger_version = '2.2'
-    ext.requery_version = '1.0.0-rc3'
+    ext.supportVersion = '24.2.1'
+    ext.kotlinVersion = '1.1-M04'
+    ext.ankoVersion = '0.9'
+    ext.daggerVersion = '2.8'
+    ext.requeryVersion = '1.0.0-rc3'
+    ext.mosbyVersion = '2.0.1'
+    ext.icepickVersion = '3.2.0'
 
     repositories {
         jcenter()
@@ -14,7 +16,7 @@ buildscript {
 
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.0-beta1'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
     }
 }
@@ -22,7 +24,18 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
-        maven { url "http://dl.bintray.com/kotlin/kotlin-eap-1.1" }
+
+        maven {
+            url "http://dl.bintray.com/kotlin/kotlin-eap-1.1"
+        }
+
+        maven {
+            url "https://clojars.org/repo/"
+        }
+
+        maven {
+            url "https://jitpack.io"
+        }
     }
 }
 

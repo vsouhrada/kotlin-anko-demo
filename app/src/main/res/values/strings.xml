@@ -18,4 +18,8 @@
     <string name="create_user_create_button_text">Create</string>
     <string name="create_user_alert_failed_title">Creating of Account Failed!</string>
     <string name="create_user_alert_failed_message">Invalid username or password.</string>
+
+
+    <string name="button_login_text">Sign In</string>
+    <string name="error_view_login_text">Bad Username or password</string>
 </resources>

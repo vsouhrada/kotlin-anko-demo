@@ -1,7 +1,6 @@
 package com.vsouhrada.kotlin.android.anko.fibo.core.db.entity
 
 import io.requery.Column
-import io.requery.Entity
 import io.requery.Key
 import io.requery.Persistable
 
@@ -10,7 +9,7 @@ import io.requery.Persistable
  * @version 0.1.0
  * @since 0.1.0
  */
-@Entity
+//@Entity
 interface Currency : Persistable {
 
     @get:Key

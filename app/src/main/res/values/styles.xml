@@ -13,8 +13,16 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+
+    <style name="ActionProcessButton">
+        <item name="pb_colorComplete">@color/green_complete</item>
+        <item name="pb_colorNormal">@color/colorAccent</item>
+        <item name="pb_colorPressed">@color/colorPrimaryDark</item>
+        <item name="pb_textComplete">@string/navigation_drawer_description</item>
+        <item name="pb_textProgress">@string/app_name</item>
+    </style>
 
 </resources>

@@ -1,6 +1,7 @@
 package com.vsouhrada.apps.fibo.core.db.bl
 
 import com.vsouhrada.kotlin.android.anko.fibo.domain.model.UserDO
+import com.vsouhrada.kotlin.android.anko.fibo.function.signin.login.model.AuthCredentials
 
 /**
  * @author vsouhrada
@@ -9,9 +10,11 @@ import com.vsouhrada.kotlin.android.anko.fibo.domain.model.UserDO
  */
 interface IUserBL {
 
-    fun existUser() : Boolean
+  fun existUser(): Boolean
 
-    fun saveUser(userDO: UserDO)
+  fun saveUser(userDO: UserDO)
 
-    fun getUser(): UserDO
+  fun getUser(): UserDO
+
+  fun getUser(credentials: AuthCredentials): UserDO?
 }

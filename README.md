@@ -12,15 +12,16 @@ a lot of in Google Play store, but I want on this usecase show that using a Kotl
 for android development.
 
 Used libraries/frameworks
+
 * Kotlin - 1.1-M04
 * [Anko](https://github.com/Kotlin/anko) - 0.9
+* [Mosby](https://github.com/sockeqwe/mosby) - MVP - 2.0.1
 * [Requery](https://github.com/requery/requery) - 1.0.0-rc3
-* Dagger 2.2
+* Dagger 2.8
 * RxAndroid 1.2.1
 * RxKotlin 0.60.0
 
 * Note
- * DrawerActivity is not written in Kotlin yet
  * Documentation is in progress
  * Demo app is under development
 

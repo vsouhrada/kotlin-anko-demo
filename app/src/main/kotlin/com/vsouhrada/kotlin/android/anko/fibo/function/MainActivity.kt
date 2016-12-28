@@ -3,8 +3,7 @@ package com.vsouhrada.kotlin.android.anko.fibo.function
 import android.os.Bundle
 import com.vsouhrada.apps.fibo.BaseActivity
 import com.vsouhrada.apps.fibo.core.db.bl.IUserBL
-import com.vsouhrada.kotlin.android.anko.fibo.DrawerActivity
-import com.vsouhrada.kotlin.android.anko.fibo.function.user.CreateUserActivity
+import com.vsouhrada.kotlin.android.anko.fibo.function.signin.SignInActivity
 import org.jetbrains.anko.startActivity
 import javax.inject.Inject
 
@@ -23,15 +22,15 @@ class MainActivity : BaseActivity() {
         // DI
         activityComponent().inject(this)
 
-        if (!userBL.existUser()) {
+       // if (!userBL.existUser()) {
             //runOnUiThread { Toast.makeText(this, "NO User defined!!!", Toast.LENGTH_SHORT).show() }
             //startActivity(Intent(this, CreateUserActivity::class.java))
-            startActivity<CreateUserActivity>()
+            startActivity<SignInActivity>()
             finish()
-        } else {
+     /*   } else {
             startActivity<DrawerActivity>()
             finish()
-        }
+        }*/
 
     }
 

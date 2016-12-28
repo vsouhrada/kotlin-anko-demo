@@ -2,4 +2,8 @@
 <resources>
     <item name="DB_MANAGER_ID" type="id">299</item>
     <item name="userNameEditText" type="id" />
+    <item name="passwordEditText" type="id" />
+    <item name="fragmentContainer" type="id" />
+    <item name="loginForm" type="id" />
+    <item name="loginButton" type="id" />
 </resources>

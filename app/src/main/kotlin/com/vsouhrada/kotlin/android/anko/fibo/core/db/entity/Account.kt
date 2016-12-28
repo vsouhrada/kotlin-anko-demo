@@ -8,7 +8,7 @@ import io.requery.*
  * @version 0.1
  * @since 0.1
  */
-@Entity
+//@Entity
 interface Account : Persistable {
 
     @get:Key

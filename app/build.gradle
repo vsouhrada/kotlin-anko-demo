@@ -31,25 +31,31 @@ android {
     lintOptions {
         //disable 'InvalidPackage'
         warning 'InvalidPackage'
+        abortOnError false
     }
 }
 
 dependencies {
+    compile project(":lib-db")
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
-    compile "com.android.support:appcompat-v7:$support_version"
-    compile "com.android.support:recyclerview-v7:$support_version"
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    compile "org.jetbrains.anko:anko-sdk15:$anko_version" // sdk19, sdk21, sdk23 are also available
-    compile "org.jetbrains.anko:anko-sqlite:$anko_version"
+    compile "com.android.support:appcompat-v7:$supportVersion"
+    compile "com.android.support:recyclerview-v7:$supportVersion"
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+    compile "org.jetbrains.anko:anko-sdk15:$ankoVersion" // sdk19, sdk21, sdk23 are also available
+    compile "org.jetbrains.anko:anko-sqlite:$ankoVersion"
     compile 'com.android.support:design:24.2.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
     compile "com.google.code.gson:gson:2.4"
 
     // Anko libs matching support libs
-    compile "org.jetbrains.anko:anko-appcompat-v7:$anko_version"
-    compile "org.jetbrains.anko:anko-design:$anko_version"
-    compile "org.jetbrains.anko:anko-recyclerview-v7:$anko_version"
+    compile "org.jetbrains.anko:anko-appcompat-v7:$ankoVersion"
+    compile "org.jetbrains.anko:anko-design:$ankoVersion"
+    compile "org.jetbrains.anko:anko-recyclerview-v7:$ankoVersion"
+
+    // Mosby - MVP
+    compile 'com.hannesdorfmann.mosby:mvp:2.0.1'
+    compile 'com.hannesdorfmann.mosby:viewstate:2.0.1' // optional viewstate feature
 
     // Reactive - Rx
     compile 'io.reactivex:rxandroid:1.2.1'
@@ -57,15 +63,21 @@ dependencies {
     compile 'io.reactivex:rxkotlin:0.60.0'
 
     // Requery
-    compile "io.requery:requery:$requery_version"
-    compile "io.requery:requery-kotlin:$requery_version"
-    compile "io.requery:requery-android:$requery_version" // for android
-    kapt "io.requery:requery-processor:$requery_version"
+    compile "io.requery:requery:$requeryVersion"
+    compile "io.requery:requery-kotlin:$requeryVersion"
+    compile "io.requery:requery-android:$requeryVersion" // for android
+    //kapt "io.requery:requery-processor:$requeryVersion"
+
+    compile "frankiesardo:icepick:$icepickVersion"
+    provided "frankiesardo:icepick-processor:$icepickVersion"
+
+    compile 'com.rengwuxian.materialedittext:library:2.1.4'
+    compile 'com.github.jjhesk:hkm-progress-button:0.15'
 
     // Dagger
-    compile "com.google.dagger:dagger:$dagger_version"
+    compile "com.google.dagger:dagger:$daggerVersion"
     // APT dependencies
-    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
 
     provided 'org.glassfish:javax.annotation:10.0-b28' //Required by Dagger2
 

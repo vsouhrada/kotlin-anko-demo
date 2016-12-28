@@ -15,17 +15,21 @@ import dagger.Provides
 @Module
 class ActivityModule(private val activity: Activity) {
 
-    @Provides fun provideActivity(): Activity {
-        return activity
-    }
+  @Provides fun provideActivity(): Activity {
+    return activity
+  }
 
-    @Provides @ForActivity fun providesContext(): Context {
-        return activity
-    }
+  @Provides @ForActivity fun providesContext(): Context {
+    return activity
+  }
 
-    @Provides
-    fun providesFragmentManager(): FragmentManager {
-        return (activity as FragmentActivity).getSupportFragmentManager()
-    }
+  @Provides
+  fun providesFragmentManager(): FragmentManager {
+    return (activity as FragmentActivity).getSupportFragmentManager()
+  }
+
+//  @Provides @Singleton fun provideLoginPresenter(userBL: UserBL): LoginPresenter {
+//    return LoginPresenter(userBL = userBL)
+//  }
 
 }

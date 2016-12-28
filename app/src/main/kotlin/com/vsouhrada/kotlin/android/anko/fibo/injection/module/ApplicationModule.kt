@@ -8,8 +8,8 @@ import com.vsouhrada.apps.fibo.injection.qualifier.ForApplication
 import com.vsouhrada.kotlin.android.anko.fibo.BuildConfig
 import com.vsouhrada.kotlin.android.anko.fibo.core.db.FiboDatabaseSource
 import com.vsouhrada.kotlin.android.anko.fibo.core.db.bl.UserBL
-import com.vsouhrada.kotlin.android.anko.fibo.core.db.entity.Models
 import com.vsouhrada.kotlin.android.anko.fibo.core.rx.RxBus
+import com.vsouhrada.kotlin.android.anko.fibo.lib_db.entity.Models
 import dagger.Module
 import dagger.Provides
 import io.requery.Persistable

@@ -1,6 +1,5 @@
-package com.vsouhrada.kotlin.android.anko.fibo.core.db.bl
+package com.vsouhrada.kotlin.android.anko.fibo.function.common.user.repository
 
-import com.vsouhrada.apps.fibo.core.db.bl.IUserBL
 import com.vsouhrada.kotlin.android.anko.fibo.domain.model.UserDO
 import com.vsouhrada.kotlin.android.anko.fibo.function.signin.login.model.AuthCredentials
 import com.vsouhrada.kotlin.android.anko.fibo.lib_db.entity.UserEntity
@@ -11,17 +10,16 @@ import javax.inject.Inject
 
 /**
  * @author vsouhrada
- * @version 0.1
- * @since 0.1
- * @see[IUserBL]
+ * @see[IUserRepository]
+ * @since 0.1.0
  */
-class UserBL @Inject constructor(val dataStore: KotlinEntityDataStore<Persistable>) : IUserBL {
+class UserRepository @Inject constructor(val dataStore: KotlinEntityDataStore<Persistable>) : IUserRepository {
 
   override fun existUser(): Boolean {
     return dataStore.count(UserEntity::class).get().value() > 0
   }
 
-  override fun saveUser(credentials: AuthCredentials) {
+  override fun insertUser(credentials: AuthCredentials) {
     val user = UserEntity()
     with(user) {
       userName = credentials.userName
@@ -33,29 +31,23 @@ class UserBL @Inject constructor(val dataStore: KotlinEntityDataStore<Persistabl
     }
   }
 
-  override fun getUser(): UserDO {
-    val result = dataStore.select(UserEntity::class).get().first()
-
-    return convertToDO(result)
-  }
-
-  override fun getUser(credentials: AuthCredentials): UserDO? {
+  override fun findUserById(id: Int): UserDO? {
     var userDO: UserDO? = null
     dataStore.invoke {
-      val selectResult =
-        select(UserEntity::class) where (
-                UserEntity.USER_NAME.eq(credentials.userName).and(UserEntity.PASSWORD.eq(credentials.password)))
-
+      val selectResult = select(UserEntity::class) where (UserEntity.ID.eq(id))
       selectResult.get().firstOrNull()?.let { userDO = convertToDO(it) }
     }
 
     return userDO
   }
 
-  override fun getUserById(id: Int): UserDO? {
+  override fun loadUser(credentials: AuthCredentials): UserDO? {
     var userDO: UserDO? = null
     dataStore.invoke {
-      val selectResult = select(UserEntity::class) where (UserEntity.ID.eq(id))
+      val selectResult =
+              select(UserEntity::class) where (
+                      UserEntity.USER_NAME.eq(credentials.userName).and(UserEntity.PASSWORD.eq(credentials.password)))
+
       selectResult.get().firstOrNull()?.let { userDO = convertToDO(it) }
     }
 

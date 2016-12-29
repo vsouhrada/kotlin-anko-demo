@@ -14,8 +14,6 @@ interface IUserBL {
 
   fun saveUser(credentials: AuthCredentials)
 
-  fun getUser(): UserDO
-
   fun getUserById(id: Int): UserDO?
 
   fun getUser(credentials: AuthCredentials): UserDO?

@@ -9,6 +9,7 @@ import com.vsouhrada.kotlin.android.anko.fibo.app.FiboApp
 import com.vsouhrada.kotlin.android.anko.fibo.core.db.FiboDatabaseSource
 import com.vsouhrada.kotlin.android.anko.fibo.core.rx.RxBus
 import com.vsouhrada.kotlin.android.anko.fibo.core.session.ISessionManager
+import com.vsouhrada.kotlin.android.anko.fibo.function.common.user.repository.IUserRepository
 import com.vsouhrada.kotlin.android.anko.fibo.function.signin.login.presenter.LoginPresenter
 import dagger.Component
 import io.requery.Persistable
@@ -36,6 +37,8 @@ interface ApplicationComponent {
   fun userBusinessLogic(): IUserBL
 
   fun sessionManager(): ISessionManager
+
+  fun userRepository(): IUserRepository
 
   @Singleton fun loginPres(): LoginPresenter
 

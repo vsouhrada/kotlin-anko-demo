@@ -7,10 +7,12 @@ import com.vsouhrada.apps.fibo.core.db.bl.IUserBL
 import com.vsouhrada.apps.fibo.injection.qualifier.ForApplication
 import com.vsouhrada.kotlin.android.anko.fibo.BuildConfig
 import com.vsouhrada.kotlin.android.anko.fibo.core.db.FiboDatabaseSource
-import com.vsouhrada.kotlin.android.anko.fibo.core.db.bl.UserBL
 import com.vsouhrada.kotlin.android.anko.fibo.core.rx.RxBus
 import com.vsouhrada.kotlin.android.anko.fibo.core.session.ISessionManager
 import com.vsouhrada.kotlin.android.anko.fibo.core.session.SessionManager
+import com.vsouhrada.kotlin.android.anko.fibo.function.common.user.bl.UserBL
+import com.vsouhrada.kotlin.android.anko.fibo.function.common.user.repository.IUserRepository
+import com.vsouhrada.kotlin.android.anko.fibo.function.common.user.repository.UserRepository
 import com.vsouhrada.kotlin.android.anko.fibo.function.signin.login.presenter.LoginPresenter
 import com.vsouhrada.kotlin.android.anko.fibo.lib_db.entity.Models
 import dagger.Module
@@ -85,8 +87,12 @@ class ApplicationModule(private val application: Application) {
 
   @Provides
   @Singleton
-  fun provideUserBusinessLogic(dataStore: KotlinEntityDataStore<Persistable>): IUserBL {
-    return UserBL(dataStore)
+  fun provideUserBusinessLogic(userRepository: IUserRepository): IUserBL {
+    return UserBL(userRepository)
+  }
+
+  @Provides @Singleton fun provideUserRepository(dataStore: KotlinEntityDataStore<Persistable>): IUserRepository {
+    return UserRepository(dataStore)
   }
 
   @Provides @Singleton fun provideSessionManager(application: Application): ISessionManager = SessionManager(application)

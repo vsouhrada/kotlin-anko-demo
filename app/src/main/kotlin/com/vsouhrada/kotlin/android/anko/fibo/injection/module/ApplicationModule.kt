@@ -9,6 +9,8 @@ import com.vsouhrada.kotlin.android.anko.fibo.BuildConfig
 import com.vsouhrada.kotlin.android.anko.fibo.core.db.FiboDatabaseSource
 import com.vsouhrada.kotlin.android.anko.fibo.core.db.bl.UserBL
 import com.vsouhrada.kotlin.android.anko.fibo.core.rx.RxBus
+import com.vsouhrada.kotlin.android.anko.fibo.core.session.ISessionManager
+import com.vsouhrada.kotlin.android.anko.fibo.core.session.SessionManager
 import com.vsouhrada.kotlin.android.anko.fibo.function.signin.login.presenter.LoginPresenter
 import com.vsouhrada.kotlin.android.anko.fibo.lib_db.entity.Models
 import dagger.Module
@@ -65,21 +67,14 @@ class ApplicationModule(private val application: Application) {
   @Provides
   @Singleton
   fun provideDataStore(databaseSource: FiboDatabaseSource): KotlinEntityDataStore<Persistable> {
-    //val dabaseSource = DatabaseSource(context, Models.DEFAULT, 1)
-    //val source = FiboDatabaseSource(context = context, model = Models.DEFAULT, version = 1)
     if (BuildConfig.DEBUG) {
       databaseSource.setTableCreationMode(TableCreationMode.DROP_CREATE)
     }
-    //val config = KotlinConfiguration(Models.DEFAULT, dabaseSource.configuration)
-    //val source = DatabaseSource(context, Models.DEFAULT, 1)
-    //val configuration = source.configuration
-    //val data = KotlinEntityDataStore<Persistable>(source.configuration)
-    //val dataStore = KotlinEntityDataStore<Persistable>(source.configuration)
     var tableCreationMode = TableCreationMode.CREATE_NOT_EXISTS
     if (BuildConfig.DEBUG) {
       tableCreationMode = TableCreationMode.DROP_CREATE
+      // TODO handle with tableCreationMode
     }
-    //SchemaModifier(databaseSource.configuration).createTables(tableCreationMode)
 
     val dataStore = KotlinEntityDataStore<Persistable>(databaseSource.configuration)
 
@@ -94,7 +89,9 @@ class ApplicationModule(private val application: Application) {
     return UserBL(dataStore)
   }
 
-  @Provides @Singleton fun provideLoginPresenter(userBL: IUserBL): LoginPresenter {
-    return LoginPresenter(userBL)
+  @Provides @Singleton fun provideSessionManager(application: Application): ISessionManager = SessionManager(application)
+
+  @Provides @Singleton fun provideLoginPresenter(userBL: IUserBL, sessionManager: ISessionManager): LoginPresenter {
+    return LoginPresenter(userBL, sessionManager)
   }
 }

@@ -7,6 +7,7 @@ import android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD
 import android.view.Gravity
 import android.view.View
 import android.view.animation.AnimationUtils
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -111,6 +112,11 @@ class LoginView : AnkoComponent<FragmentActivity>, ILoginView {
               onClick { handleOnLoginAction(ui) }
             }
 
+            checkBox {
+              id = R.id.loginStayLoggedBox
+              text = string(R.string.login_label_rememberMe)
+            }
+
 //        actionProcessButton(theme = R.style.ActionProcessButton) {
 //          id = R.id.loginButton
 //          lparams(width = matchParent, height = dip(48)) {
@@ -160,6 +166,7 @@ class LoginView : AnkoComponent<FragmentActivity>, ILoginView {
       val loginForm = find<LinearLayout>(R.id.loginForm)
       val userNameTextView = find<MaterialEditText>(R.id.userNameEditText)
       val passwordTextView = find<MaterialEditText>(R.id.passwordEditText)
+      val rememberMeBox = find<CheckBox>(R.id.loginStayLoggedBox)
 
       val username = userNameTextView.text.toString()
       val password = passwordTextView.text.toString()
@@ -189,7 +196,7 @@ class LoginView : AnkoComponent<FragmentActivity>, ILoginView {
         hideKeyboard(passwordTextView)
       }
 
-      presenter.doLogin(AuthCredentials(userName = username, password = password))
+      presenter.doLogin(AuthCredentials(userName = username, password = password, rememberMe = rememberMeBox.isChecked))
     }
 
   }
@@ -206,6 +213,7 @@ class LoginView : AnkoComponent<FragmentActivity>, ILoginView {
   override fun showError() {
     viewState.setShowError()
     setFormEnabled(true)
+
     with(ankoView.owner) {
       find<ActionProcessButton>(R.id.loginButton).progress = 0
       if (!isRestoringViewState) {

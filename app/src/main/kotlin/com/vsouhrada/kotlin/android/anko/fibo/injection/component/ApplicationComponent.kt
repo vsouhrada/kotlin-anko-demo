@@ -8,6 +8,7 @@ import com.vsouhrada.apps.fibo.injection.qualifier.ForApplication
 import com.vsouhrada.kotlin.android.anko.fibo.app.FiboApp
 import com.vsouhrada.kotlin.android.anko.fibo.core.db.FiboDatabaseSource
 import com.vsouhrada.kotlin.android.anko.fibo.core.rx.RxBus
+import com.vsouhrada.kotlin.android.anko.fibo.core.session.ISessionManager
 import com.vsouhrada.kotlin.android.anko.fibo.function.signin.login.presenter.LoginPresenter
 import dagger.Component
 import io.requery.Persistable
@@ -33,6 +34,8 @@ interface ApplicationComponent {
   fun dataStore(): KotlinEntityDataStore<Persistable>
 
   fun userBusinessLogic(): IUserBL
+
+  fun sessionManager(): ISessionManager
 
   @Singleton fun loginPres(): LoginPresenter
 

@@ -29,7 +29,7 @@ class SignInActivity : BaseActivity() {
     super.onResume()
     subscription = bus.toObservable().subscribe { event ->
       if (event is CreateUserEvent) {
-        userBL.saveUser(event.userDO)
+        userBL.saveUser(event.credentials)
         startActivity<DrawerActivity>()
         finish()
       }

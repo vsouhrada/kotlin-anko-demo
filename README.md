@@ -13,20 +13,22 @@ for android development.
 
 Used libraries/frameworks
 
-* Kotlin - 1.1-M04
-* [Anko](https://github.com/Kotlin/anko) - 0.9
+* Kotlin 1.1-M04
+* [Anko](https://github.com/Kotlin/anko) 0.9
 * [Mosby](https://github.com/sockeqwe/mosby) - MVP - 2.0.1
-* [Requery](https://github.com/requery/requery) - 1.0.0-rc3
+* [Requery](https://github.com/requery/requery) 1.0.0-rc3
 * Dagger 2.8
 * RxAndroid 1.2.1
 * RxKotlin 0.60.0
+* [kotpref](https://github.com/chibatching/Kotpref) 1.6.0
+* [PaperParcel](https://github.com/grandstaish/paperparcel) 2.0.0-beta2
 
 * Note
  * Documentation is in progress
  * Demo app is under development
 
 ### App Description
-In this application I would like to use and show libraries which I think are very interesting and 
+In this application I would like to show you libraries which I think are very interesting and 
 useful for Android development.
 
 #### Login View
@@ -36,11 +38,23 @@ First screen of application is the Login view. There you must enter username and
   <img src="art/github/login.png" width="182" height="357"/>
 </p>
 
-A default demo user is already created so you can use this user where:
-* username = frosty
-* password = snow
+In current version only a demo user can be used:
+
+* username = **frosty**
+* password = **snow**
 
 You can find these default values below Sign In button as a hint.
+
+Application allows to remember you - if you will check the **Remember me** checkbox then the next time app display the main dashboard 
+directly.
+
+The **Sign In button** is _action process button_ which show progress state of checking authorization credentials. You will see for short 
+time a green Sign In button in case of you entered authorization credentials correctly, otherwise you will see red text _Bad Username or Password_ text bewlo button
+
+<p align="center">
+<img src="art/github/login_ok.png" width="182" height="357"/>
+  <img src="art/github/login_error.png" width="182" height="357"/>
+</p>
 
 The Login process is written in Kotlin and Anko is used to create UI not in XML but 
 directly in code by using Anko DSL features.

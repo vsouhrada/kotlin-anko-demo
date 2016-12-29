@@ -6,4 +6,5 @@
     <item name="fragmentContainer" type="id" />
     <item name="loginForm" type="id" />
     <item name="loginButton" type="id" />
+    <item name="loginStayLoggedBox" type="id" />
 </resources>

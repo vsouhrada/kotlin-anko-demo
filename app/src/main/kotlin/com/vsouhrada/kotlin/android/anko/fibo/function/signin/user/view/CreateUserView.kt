@@ -5,8 +5,8 @@ import com.vsouhrada.apps.fibo.function.user.CreateUserEvent
 import com.vsouhrada.kotlin.android.anko.fibo.R
 import com.vsouhrada.kotlin.android.anko.fibo.core.anko.string
 import com.vsouhrada.kotlin.android.anko.fibo.core.rx.RxBus
-import com.vsouhrada.kotlin.android.anko.fibo.domain.model.UserDO
 import com.vsouhrada.kotlin.android.anko.fibo.function.signin.SignInActivity
+import com.vsouhrada.kotlin.android.anko.fibo.function.signin.login.model.AuthCredentials
 import org.jetbrains.anko.*
 
 /**
@@ -46,7 +46,7 @@ class CreateUserView(val bus: RxBus) : AnkoComponent<SignInActivity> {
     val password = passwordEditText.text.toString()
 
     if (validateCredentials(username, password)) {
-      bus.send(CreateUserEvent(UserDO(username = username, password = password)))
+      bus.send(CreateUserEvent(AuthCredentials(userName = username, password = password, rememberMe = false)))
     } else {
       with(ui) {
         alert(title = string(R.string.create_user_alert_failed_title),

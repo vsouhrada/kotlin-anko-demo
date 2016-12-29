@@ -12,9 +12,11 @@ interface IUserBL {
 
   fun existUser(): Boolean
 
-  fun saveUser(userDO: UserDO)
+  fun saveUser(credentials: AuthCredentials)
 
   fun getUser(): UserDO
+
+  fun getUserById(id: Int): UserDO?
 
   fun getUser(credentials: AuthCredentials): UserDO?
 }

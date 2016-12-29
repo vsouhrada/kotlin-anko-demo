@@ -21,11 +21,11 @@ class UserBL @Inject constructor(val dataStore: KotlinEntityDataStore<Persistabl
     return dataStore.count(UserEntity::class).get().value() > 0
   }
 
-  override fun saveUser(userDO: UserDO) {
+  override fun saveUser(credentials: AuthCredentials) {
     val user = UserEntity()
     with(user) {
-      userName = userDO.username
-      password = userDO.password
+      userName = credentials.userName
+      password = credentials.password
     }
 
     doAsync {
@@ -52,8 +52,18 @@ class UserBL @Inject constructor(val dataStore: KotlinEntityDataStore<Persistabl
     return userDO
   }
 
+  override fun getUserById(id: Int): UserDO? {
+    var userDO: UserDO? = null
+    dataStore.invoke {
+      val selectResult = select(UserEntity::class) where (UserEntity.ID.eq(id))
+      selectResult.get().firstOrNull()?.let { userDO = convertToDO(it) }
+    }
+
+    return userDO
+  }
+
   private fun convertToDO(entity: UserEntity): UserDO {
-    return UserDO(username = entity.userName, password = entity.password)
+    return UserDO(id = entity.id, username = entity.userName, password = entity.password)
   }
 
 }

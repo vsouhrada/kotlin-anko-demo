@@ -1,7 +1,10 @@
 package com.vsouhrada.kotlin.android.anko.fibo.function.signin.login.presenter
 
+import com.chibatching.kotpref.blockingBulk
 import com.hannesdorfmann.mosby.mvp.MvpBasePresenter
 import com.vsouhrada.apps.fibo.core.db.bl.IUserBL
+import com.vsouhrada.kotlin.android.anko.fibo.core.session.ISessionManager
+import com.vsouhrada.kotlin.android.anko.fibo.core.session.model.UserInfoPrefModel
 import com.vsouhrada.kotlin.android.anko.fibo.function.signin.login.model.AuthCredentials
 import com.vsouhrada.kotlin.android.anko.fibo.function.signin.login.view.ILoginViewPresenter
 import com.vsouhrada.kotlin.android.anko.fibo.function.signin.login.view.LoginView
@@ -13,7 +16,8 @@ import javax.inject.Inject
  * @author vsouhrada
  * @since 0.1.0
  */
-class LoginPresenter @Inject constructor(val userBL: IUserBL) : MvpBasePresenter<LoginView>(), ILoginViewPresenter {
+class LoginPresenter @Inject constructor(val userBL: IUserBL, val sessionManager: ISessionManager)
+  : MvpBasePresenter<LoginView>(), ILoginViewPresenter {
 
   //private var subscriber: Subscriber<UserDO>? = null
 
@@ -33,6 +37,12 @@ class LoginPresenter @Inject constructor(val userBL: IUserBL) : MvpBasePresenter
       uiThread {
         if (isViewAttached) {
           if (user != null) {
+            sessionManager.putUserOnSession(user)
+            if (credentials.rememberMe) {
+              UserInfoPrefModel.blockingBulk { userId = user.id }
+            } else {
+              UserInfoPrefModel.blockingBulk { userId = -1 }
+            }
             view?.loginSuccessful()
           } else {
             view?.showError()

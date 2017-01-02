@@ -73,6 +73,7 @@ dependencies {
 
     compile 'com.rengwuxian.materialedittext:library:2.1.4'
     compile 'com.github.jjhesk:hkm-progress-button:0.15'
+    compile 'com.github.clans:fab:1.6.4'
 
     compile 'com.chibatching:kotpref:1.6.0'
     compile 'nz.bradcampbell:paperparcel:2.0.0-beta2'

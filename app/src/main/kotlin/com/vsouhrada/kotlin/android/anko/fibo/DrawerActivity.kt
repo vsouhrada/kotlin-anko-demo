@@ -1,7 +1,6 @@
 package com.vsouhrada.kotlin.android.anko.fibo
 
 import android.os.Bundle
-import android.support.design.widget.FloatingActionButton
 import android.support.design.widget.NavigationView
 import android.support.design.widget.Snackbar
 import android.support.v4.view.GravityCompat
@@ -11,6 +10,7 @@ import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.TextView
+import com.github.clans.fab.FloatingActionButton
 import com.vsouhrada.apps.fibo.BaseActivity
 import com.vsouhrada.kotlin.android.anko.fibo.core.session.ISessionManager
 import org.jetbrains.anko.find
@@ -31,9 +31,21 @@ class DrawerActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedLi
     val toolbar = find<Toolbar>(R.id.toolbar)
     setSupportActionBar(toolbar)
 
-    val fab = find<FloatingActionButton>(R.id.fab)
-    fab.setOnClickListener { view ->
-      Snackbar.make(view, "FAB clicked", Snackbar.LENGTH_SHORT)
+    val fabNewIncome = find<FloatingActionButton>(R.id.fab_new_income)
+    fabNewIncome.setOnClickListener { view ->
+      Snackbar.make(view, getString(R.string.fab_main_new_income), Snackbar.LENGTH_SHORT)
+              .setAction("Action", null).show()
+    }
+
+    val fabNewExpense = find<FloatingActionButton>(R.id.fab_new_expense)
+    fabNewExpense.setOnClickListener { view ->
+      Snackbar.make(view, getString(R.string.fab_main_new_expense), Snackbar.LENGTH_SHORT)
+              .setAction("Action", null).show()
+    }
+
+    val fabBillReminder = find<FloatingActionButton>(R.id.fab_bill_reminder)
+    fabBillReminder.setOnClickListener { view ->
+      Snackbar.make(view, getString(R.string.fab_main_bill_reminder), Snackbar.LENGTH_SHORT)
               .setAction("Action", null).show()
     }
 

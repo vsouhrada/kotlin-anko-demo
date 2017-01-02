@@ -23,4 +23,9 @@
     <string name="button_login_text">Sign In</string>
     <string name="error_view_login_text">Bad Username or password</string>
     <string name="login_label_rememberMe">Remember Me</string>
+
+    <!-- Main FAB Menu -->
+    <string name="fab_main_bill_reminder">Bill Reminder</string>
+    <string name="fab_main_new_income">New Income</string>
+    <string name="fab_main_new_expense">New Expense</string>
 </resources>

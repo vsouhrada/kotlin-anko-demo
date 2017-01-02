@@ -39,6 +39,7 @@
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/fab_margin"
             android:src="@android:drawable/ic_popup_reminder"
+            style="@style/FabMenuButtonsSmall"
             fab:fab_label="@string/fab_main_bill_reminder"
             fab:fab_size="mini"
             />
@@ -50,6 +51,7 @@
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/fab_margin"
             android:src="@mipmap/ic_edit"
+            style="@style/FabMenuButtonsSmall.Green"
             fab:fab_label="@string/fab_main_new_income"
             fab:fab_size="mini"
             />

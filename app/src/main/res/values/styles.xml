@@ -25,4 +25,17 @@
         <item name="pb_textProgress">@string/app_name</item>
     </style>
 
+    <style name="FabMenuButtonsSmall">
+        <item name="fab_size">mini</item>
+        <item name="fab_colorNormal">#1565C0</item>
+        <item name="fab_colorPressed">#2272CD</item>
+        <item name="fab_colorRipple">#62B2FF</item>
+    </style>
+
+    <style name="FabMenuButtonsSmall.Green">
+        <item name="fab_colorNormal">#43A047</item>
+        <item name="fab_colorPressed">#2E7D32</item>
+        <item name="fab_colorRipple">#1B5E20</item>
+    </style>
+
 </resources>

@@ -4,7 +4,7 @@ import android.os.Bundle
 import com.vsouhrada.apps.fibo.BaseActivity
 import com.vsouhrada.apps.fibo.core.db.bl.IUserBL
 import com.vsouhrada.apps.fibo.function.user.CreateUserEvent
-import com.vsouhrada.kotlin.android.anko.fibo.DrawerActivity
+import com.vsouhrada.kotlin.android.anko.fibo.function.drawer.DrawerActivity
 import com.vsouhrada.kotlin.android.anko.fibo.R
 import com.vsouhrada.kotlin.android.anko.fibo.core.rx.RxBus
 import com.vsouhrada.kotlin.android.anko.fibo.core.view.FragmentContainerView

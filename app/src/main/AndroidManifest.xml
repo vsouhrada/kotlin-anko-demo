@@ -25,7 +25,7 @@
         </activity>
 
         <activity android:name="com.vsouhrada.kotlin.android.anko.fibo.function.signin.SignInActivity" />
-        <activity android:name=".DrawerActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".function.drawer.DrawerActivity" android:theme="@style/AppTheme.NoActionBar"/>
 
     </application>
 

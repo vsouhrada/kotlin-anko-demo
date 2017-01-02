@@ -7,4 +7,7 @@
     <item name="loginForm" type="id" />
     <item name="loginButton" type="id" />
     <item name="loginStayLoggedBox" type="id" />
+    <item name="toolbar" type="id" />
+    <item name="drawer_layout" type="id" />
+    <item name="nav_view" type="id" />
 </resources>

@@ -3,7 +3,7 @@ package com.vsouhrada.kotlin.android.anko.fibo.function.signin.login.presenter
 import com.chibatching.kotpref.blockingBulk
 import com.hannesdorfmann.mosby.mvp.MvpBasePresenter
 import com.vsouhrada.apps.fibo.core.db.bl.IUserBL
-import com.vsouhrada.kotlin.android.anko.fibo.DrawerActivity
+import com.vsouhrada.kotlin.android.anko.fibo.function.drawer.DrawerActivity
 import com.vsouhrada.kotlin.android.anko.fibo.core.session.ISessionManager
 import com.vsouhrada.kotlin.android.anko.fibo.core.session.model.UserInfoPrefModel
 import com.vsouhrada.kotlin.android.anko.fibo.function.signin.login.model.AuthCredentials

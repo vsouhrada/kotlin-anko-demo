@@ -1,4 +1,4 @@
-package com.vsouhrada.kotlin.android.anko.fibo
+package com.vsouhrada.kotlin.android.anko.fibo.function.drawer
 
 import android.os.Bundle
 import android.support.design.widget.NavigationView
@@ -12,8 +12,11 @@ import android.view.MenuItem
 import android.widget.TextView
 import com.github.clans.fab.FloatingActionButton
 import com.vsouhrada.apps.fibo.BaseActivity
+import com.vsouhrada.kotlin.android.anko.fibo.R
 import com.vsouhrada.kotlin.android.anko.fibo.core.session.ISessionManager
+import com.vsouhrada.kotlin.android.anko.fibo.function.drawer.view.DrawerView
 import org.jetbrains.anko.find
+import org.jetbrains.anko.setContentView
 import org.jetbrains.anko.toast
 import javax.inject.Inject
 
@@ -21,12 +24,15 @@ class DrawerActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedLi
 
   @Inject lateinit var sessionManager: ISessionManager
 
+  lateinit var drawer: DrawerLayout
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.a_drawer)
+    DrawerView().setContentView(this)
 
     activityComponent().inject(this)
+
+    drawer = find<DrawerLayout>(R.id.drawer_layout)
 
     val toolbar = find<Toolbar>(R.id.toolbar)
     setSupportActionBar(toolbar)
@@ -49,9 +55,9 @@ class DrawerActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedLi
               .setAction("Action", null).show()
     }
 
-    val drawer = find<DrawerLayout>(R.id.drawer_layout)
     val toggle = ActionBarDrawerToggle(
             this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+
     drawer.setDrawerListener(toggle)
     toggle.syncState()
 
@@ -62,7 +68,6 @@ class DrawerActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedLi
   }
 
   override fun onBackPressed() {
-    val drawer = find<DrawerLayout>(R.id.drawer_layout)
     if (drawer.isDrawerOpen(GravityCompat.START)) {
       drawer.closeDrawer(GravityCompat.START)
     } else {
@@ -97,7 +102,6 @@ class DrawerActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedLi
       R.id.nav_send -> toast("Click Send")
     }
 
-    val drawer = find<DrawerLayout>(R.id.drawer_layout)
     drawer.closeDrawer(GravityCompat.START)
 
     return true

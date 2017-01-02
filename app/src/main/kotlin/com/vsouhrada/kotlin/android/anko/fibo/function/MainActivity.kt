@@ -2,7 +2,7 @@ package com.vsouhrada.kotlin.android.anko.fibo.function
 
 import android.os.Bundle
 import com.vsouhrada.apps.fibo.BaseActivity
-import com.vsouhrada.kotlin.android.anko.fibo.DrawerActivity
+import com.vsouhrada.kotlin.android.anko.fibo.function.drawer.DrawerActivity
 import com.vsouhrada.kotlin.android.anko.fibo.core.session.ISessionManager
 import org.jetbrains.anko.startActivity
 import javax.inject.Inject

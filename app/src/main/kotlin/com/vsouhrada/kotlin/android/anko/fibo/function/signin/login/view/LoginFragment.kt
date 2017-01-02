@@ -38,18 +38,13 @@ class LoginFragment : BaseViewStateFragment<LoginView, LoginPresenter>() {
 
   override fun createViewState() = LoginViewState()
 
-  override fun onNewViewStateInstance() {
-   presenter.showLoginForm()
-  }
-
   override fun setRestoringViewState(restoringViewState: Boolean) {
     super.setRestoringViewState(restoringViewState)
-    view.isRestoringViewState = true
+    view.presenter = presenter
   }
 
-  override fun onViewStateRestored(savedInstanceState: Bundle?) {
-    super.onViewStateRestored(savedInstanceState)
-    view.isRestoringViewState = false
+  override fun onNewViewStateInstance() {
+   presenter.showLoginForm()
   }
 
   interface Injector {

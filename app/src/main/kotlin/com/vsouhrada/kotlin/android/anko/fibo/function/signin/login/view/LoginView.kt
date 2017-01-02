@@ -36,7 +36,7 @@ class LoginView : AnkoComponent<FragmentActivity>, ILoginView {
 
   lateinit var ankoView: AnkoContext<FragmentActivity>
 
-  var isRestoringViewState = false
+  override var isRestoringViewState = false
 
   override fun createView(ui: AnkoContext<FragmentActivity>) = with(ui) {
     ankoView = ui

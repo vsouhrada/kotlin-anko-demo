@@ -59,5 +59,15 @@ abstract class BaseViewStateFragment<V : MvpAnkoView, P : MvpPresenter<V>> : Mvp
     Icepick.saveInstanceState(this, outState)
   }
 
+  override fun setRestoringViewState(restoringViewState: Boolean) {
+    super.setRestoringViewState(restoringViewState)
+    view.isRestoringViewState = true
+  }
+
+  override fun onViewStateRestored(savedInstanceState: Bundle?) {
+    super.onViewStateRestored(savedInstanceState)
+    view.isRestoringViewState = false
+  }
+
 }
 

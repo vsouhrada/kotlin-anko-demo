@@ -9,5 +9,6 @@ import com.hannesdorfmann.mosby.mvp.MvpView
  */
 interface MvpAnkoView : MvpView {
 
+  var isRestoringViewState: Boolean
 
 }

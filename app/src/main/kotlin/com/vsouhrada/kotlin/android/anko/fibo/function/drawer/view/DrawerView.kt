@@ -5,6 +5,7 @@ import android.support.v4.view.GravityCompat
 import android.view.View
 import com.github.clans.fab.FloatingActionMenu
 import com.vsouhrada.kotlin.android.anko.fibo.R
+import com.vsouhrada.kotlin.android.anko.fibo.core.anko.attrAsDimen
 import com.vsouhrada.kotlin.android.anko.fibo.function.drawer.DrawerActivity
 import org.jetbrains.anko.*
 import org.jetbrains.anko.appcompat.v7.toolbar
@@ -43,7 +44,7 @@ class DrawerView : AnkoComponent<DrawerActivity> {
           id = R.id.toolbar
           popupTheme = R.style.AppTheme_PopupOverlay
           backgroundResource = R.color.colorPrimary
-          lparams(width = matchParent, height = wrapContent)
+          lparams(width = matchParent, height = ui.ctx.attrAsDimen(R.attr.actionBarSize))
         }
       }
 

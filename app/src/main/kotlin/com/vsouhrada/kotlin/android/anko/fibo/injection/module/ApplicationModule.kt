@@ -13,6 +13,11 @@ import com.vsouhrada.kotlin.android.anko.fibo.core.session.SessionManager
 import com.vsouhrada.kotlin.android.anko.fibo.function.common.user.bl.UserBL
 import com.vsouhrada.kotlin.android.anko.fibo.function.common.user.repository.IUserRepository
 import com.vsouhrada.kotlin.android.anko.fibo.function.common.user.repository.UserRepository
+import com.vsouhrada.kotlin.android.anko.fibo.function.income.bl.IIncomeBL
+import com.vsouhrada.kotlin.android.anko.fibo.function.income.bl.IncomeBL
+import com.vsouhrada.kotlin.android.anko.fibo.function.income.presenter.IncomePresenter
+import com.vsouhrada.kotlin.android.anko.fibo.function.income.repository.IIncomeRepository
+import com.vsouhrada.kotlin.android.anko.fibo.function.income.repository.IncomeRepository
 import com.vsouhrada.kotlin.android.anko.fibo.function.signin.login.presenter.LoginPresenter
 import com.vsouhrada.kotlin.android.anko.fibo.lib_db.entity.Models
 import dagger.Module
@@ -99,5 +104,17 @@ class ApplicationModule(private val application: Application) {
 
   @Provides @Singleton fun provideLoginPresenter(userBL: IUserBL, sessionManager: ISessionManager): LoginPresenter {
     return LoginPresenter(userBL, sessionManager)
+  }
+
+  @Provides @Singleton fun provideIncomePresenter(): IncomePresenter {
+    return IncomePresenter()
+  }
+
+  @Provides @Singleton fun provideIncomeRepository(): IIncomeRepository {
+    return IncomeRepository()
+  }
+
+  @Provides @Singleton fun provideIncomeBusinessLogic(repository: IIncomeRepository): IIncomeBL {
+    return IncomeBL(repository)
   }
 }

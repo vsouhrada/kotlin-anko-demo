@@ -15,8 +15,10 @@ import com.vsouhrada.apps.fibo.BaseActivity
 import com.vsouhrada.kotlin.android.anko.fibo.R
 import com.vsouhrada.kotlin.android.anko.fibo.core.session.ISessionManager
 import com.vsouhrada.kotlin.android.anko.fibo.function.drawer.view.DrawerView
+import com.vsouhrada.kotlin.android.anko.fibo.function.income.view.IncomeActivity
 import org.jetbrains.anko.find
 import org.jetbrains.anko.setContentView
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import javax.inject.Inject
 
@@ -39,8 +41,7 @@ class DrawerActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedLi
 
     val fabNewIncome = find<FloatingActionButton>(R.id.fab_new_income)
     fabNewIncome.setOnClickListener { view ->
-      Snackbar.make(view, getString(R.string.fab_main_new_income), Snackbar.LENGTH_SHORT)
-              .setAction("Action", null).show()
+      startActivity<IncomeActivity>()
     }
 
     val fabNewExpense = find<FloatingActionButton>(R.id.fab_new_expense)

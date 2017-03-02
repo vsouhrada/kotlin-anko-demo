@@ -8,7 +8,7 @@ import com.hannesdorfmann.mosby.mvp.viewstate.ViewState
  * @see[ILoginMvpView]
  * @since 0.1.0
  */
-class LoginViewState : ViewState<ILoginView>{
+class LoginViewState : ViewState<ILoginView> {
 
   internal val STATE_SHOW_LOGIN_FORM = 0
   internal val STATE_SHOW_LOADING = 1

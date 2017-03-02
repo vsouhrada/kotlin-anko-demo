@@ -56,21 +56,6 @@ class LoginView : AnkoComponent<FragmentActivity>, ILoginView {
             orientation = LinearLayout.VERTICAL
           }
 
-//      relativeLayout {
-//        lparams(width = matchParent, height = wrapContent, weight = 0.5f) {
-//          orientation = LinearLayout.VERTICAL
-//        }
-//
-//        textView {
-//          this.gravity = Gravity.CENTER
-//          text = "Fibo"
-//          textSize = 30f
-//          lparams(width = matchParent, height = wrapContent) {
-//            centerInParent()
-//          }
-//        }
-//      }
-
           linearLayout {
             id = R.id.loginForm
             lparams(width = dip(300), height = wrapContent) {

@@ -1,7 +1,5 @@
 package com.vsouhrada.kotlin.android.anko.fibo.lib_db.entity
 
-import com.vsouhrada.kotlin.android.anko.fibo.lib_db.entity.Currency
-import com.vsouhrada.kotlin.android.anko.fibo.lib_db.entity.UserAccount
 import io.requery.*
 
 /**
@@ -19,6 +17,7 @@ interface Account : Persistable {
 
     @get:Column(length = 15, nullable = false)
     var name: String
+
     @get:Column(length = 255)
     var description: String
 
@@ -31,5 +30,9 @@ interface Account : Persistable {
 
     @get:OneToMany
     val userAccounts: List<UserAccount>
+
+  // TODO
+  // public static final String COLUMN_CREATION_TIMESTAMP = "creation_timestamp";
+  //public static final String COLUMN_DEFAULT_FLAG = "default_flag";
 
 }
